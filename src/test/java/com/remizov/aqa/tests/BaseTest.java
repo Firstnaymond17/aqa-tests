@@ -7,6 +7,7 @@ import com.remizov.aqa.config.TestConfig;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -24,6 +25,13 @@ public abstract class BaseTest {
 
         RestAssured.baseURI = TestConfig.APP_BASE_URL;
         RestAssured.filters(new AllureRestAssured());
+    }
+
+    @AfterAll
+    static void stopWireMock() {
+        if (wireMockServer != null) {
+            wireMockServer.stop();
+        }
     }
 
     @BeforeEach
