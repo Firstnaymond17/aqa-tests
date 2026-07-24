@@ -53,4 +53,42 @@ class ActionTests extends BaseTest {
 
         verify(0, postRequestedFor(urlEqualTo(TestConfig.EXTERNAL_DO_ACTION_PATH)));
     }
+
+    @Test
+    void actionFails_whenExternalDoActionReturnsServerError() {
+        String token = TokenGenerator.validToken();
+        loginToken(token);
+
+        stubFor(post(urlEqualTo(TestConfig.EXTERNAL_DO_ACTION_PATH))
+                .willReturn(aResponse().withStatus(500)));
+
+        baseRequest()
+                .formParam("token", token)
+                .formParam("action", TestConfig.ACTION_ACTION)
+                .when().post(TestConfig.ENDPOINT_PATH)
+                .then()
+                .statusCode(500)
+                .body("result", equalTo("ERROR"));
+    }
+
+    @Test
+    void actionCanBeCalledMultipleTimes_forSameLoggedInToken() {
+        String token = TokenGenerator.validToken();
+        loginToken(token);
+
+        stubFor(post(urlEqualTo(TestConfig.EXTERNAL_DO_ACTION_PATH))
+                .willReturn(aResponse().withStatus(200)));
+
+        for (int i = 0; i < 3; i++) {
+            baseRequest()
+                    .formParam("token", token)
+                    .formParam("action", TestConfig.ACTION_ACTION)
+                    .when().post(TestConfig.ENDPOINT_PATH)
+                    .then()
+                    .statusCode(200)
+                    .body("result", equalTo("OK"));
+        }
+
+        verify(3, postRequestedFor(urlEqualTo(TestConfig.EXTERNAL_DO_ACTION_PATH)));
+    }
 }
