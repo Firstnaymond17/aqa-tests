@@ -4,7 +4,7 @@ import java.security.SecureRandom;
 
 public final class TokenGenerator {
 
-    private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final String ALPHABET = "0123456789ABCDEF";
     private static final SecureRandom RANDOM = new SecureRandom();
 
     private TokenGenerator() {
@@ -20,5 +20,9 @@ public final class TokenGenerator {
 
     public static String tooShortToken() {
         return validToken().substring(0, 10);
+    }
+
+    public static String invalidCharsToken() {
+        return "GHIJKLMNOPQRSTUVWXYZGHIJKLMNOPQR";
     }
 }
