@@ -8,16 +8,18 @@ Java 17, JUnit 5, RestAssured, WireMock, Allure, Maven.
 
 ## Структура проекта
 
+\`\`\`
 src/test/java/com/remizov/aqa/
 ├── config/
-│ ├── TestConfig.java — константы (URL, ключи, действия)
-│ └── TokenGenerator.java — генератор валидных/невалидных токенов
+│   ├── TestConfig.java       — константы (URL, ключи, действия)
+│   └── TokenGenerator.java   — генератор валидных/невалидных токенов
 └── tests/
-├── BaseTest.java — поднимает WireMock, настраивает RestAssured
-├── LoginTests.java — тесты LOGIN
-├── ActionTests.java — тесты ACTION
-├── LogoutTests.java — тесты LOGOUT
-└── NegativeTests.java — невалидные данные, авторизация
+├── BaseTest.java         — поднимает WireMock, настраивает RestAssured
+├── LoginTests.java       — тесты LOGIN
+├── ActionTests.java      — тесты ACTION
+├── LogoutTests.java      — тесты LOGOUT
+└── NegativeTests.java    — невалидные данные, авторизация
+\`\`\`
 
 ## Как запустить
 
