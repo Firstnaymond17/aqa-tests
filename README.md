@@ -32,4 +32,4 @@ allure serve allure-results
 
 ## Allure-отчёт
 
-![Allure Report](docs/allure report.png)
+![Allure Report](docs/allure-report.PNG)
