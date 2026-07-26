@@ -29,3 +29,7 @@ allure serve allure-results
 - **Негативные сценарии** — отсутствие/неверный API-ключ (401), невалидный формат токена (400)
 
 Итого: 14 тестов, все зелёные.
+
+## Allure-отчёт
+
+![Allure Report](docs/allure-report.png)
